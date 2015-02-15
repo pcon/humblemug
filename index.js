@@ -51,6 +51,39 @@ var utils = {
 	}
 };
 
+function add_options(params, options) {
+	'use strict';
+	var options_key;
+
+	if (options) {
+		for (options_key in options) {
+			if (options.hasOwnProperty(options_key)) {
+				params[options_key] = options[options_key];
+			}
+		}
+	}
+
+	return params;
+}
+
+function get_smugmug_data(params, options) {
+	'use strict';
+	var url = utils.generate_url(add_options(params, options)),
+		deferred = Q.defer();
+
+	utils.get_json(url).then(function (data) {
+		if (data.stat === 'fail') {
+			deferred.reject(new Error(data.message));
+		}
+
+		deferred.resolve(data);
+	}).fail(function (error) {
+		deferred.reject(error);
+	});
+
+	return deferred.promise;
+}
+
 module.exports = {
 	config: function (configuration) {
 		'use strict';
@@ -92,103 +125,34 @@ module.exports = {
 	albums: {
 		get: function (name, options) {
 			'use strict';
-			var params, url, options_key,
-				deferred = Q.defer();
-
-			params = {
+			var params = {
 				method: 'smugmug.albums.get',
 				NickName: name
 			};
 
-			if (options) {
-				for (options_key in options) {
-					if (options.hasOwnProperty(options_key)) {
-						params[options_key] = options[options_key];
-					}
-				}
-			}
-
-			url = utils.generate_url(params);
-
-			utils.get_json(url).then(function (album_data) {
-				if (album_data.stat === 'fail') {
-					deferred.reject(new Error(album_data.message));
-				}
-
-				deferred.resolve(album_data);
-			}).fail(function (error) {
-				deferred.reject(error);
-			});
-
-			return deferred.promise;
+			return get_smugmug_data(params, options);
 		},
 		getInfo: function (id, key, options) {
 			'use strict';
-			var params, url, options_key,
-				deferred = Q.defer();
-
-			params = {
+			var params = {
 				method: 'smugmug.albums.getInfo',
 				AlbumID: id,
 				AlbumKey: key
 			};
 
-			if (options) {
-				for (options_key in options) {
-					if (options.hasOwnProperty(options_key)) {
-						params[options_key] = options[options_key];
-					}
-				}
-			}
-
-			url = utils.generate_url(params);
-
-			utils.get_json(url).then(function (album_data) {
-				if (album_data.stat === 'fail') {
-					deferred.reject(new Error(album_data.message));
-				}
-
-				deferred.resolve(album_data);
-			}).fail(function (error) {
-				deferred.reject(error);
-			});
-
-			return deferred.promise;
+			return get_smugmug_data(params, options);
 		}
 	},
 	images: {
 		get: function (id, key, options) {
 			'use strict';
-			var params, url, options_key,
-				deferred = Q.defer();
-
-			params = {
+			var params = {
 				method: 'smugmug.images.get',
 				AlbumID: id,
 				AlbumKey: key
 			};
 
-			if (options) {
-				for (options_key in options) {
-					if (options.hasOwnProperty(options_key)) {
-						params[options_key] = options[options_key];
-					}
-				}
-			}
-
-			url = utils.generate_url(params);
-
-			utils.get_json(url).then(function (image_data) {
-				if (image_data.stat === 'fail') {
-					deferred.reject(new Error(image_data.message));
-				}
-
-				deferred.resolve(image_data);
-			}).fail(function (error) {
-				deferred.reject(error);
-			});
-
-			return deferred.promise;
+			return get_smugmug_data(params, options);
 		}
 	},
 	utils: utils
