@@ -23,21 +23,22 @@ Config takes in an object of configuration information to store and use.
 humble.config({api_key: '1234567890abc'});
 ```
 ##login
-###Anonymously
+###anon
+Most public information can be accessed with after loggining in anonymously
 ```javascript
 humble.login.anon().then(function () {
     //Do Stuff
 });
 ```
 ##albums
-###get
+###[get](http://api.smugmug.com/services/api/?version=1.3.0&method=smugmug.albums.get)
 Lists all of the albums for a given user
 ```javascript
 humble.albums.get('username').then(function (album_list) {
     //Do Stuff
 });
 ```
-###getInfo
+###[getInfo](http://api.smugmug.com/services/api/?version=1.3.0&method=smugmug.albums.getInfo)
 Gets all the info for a given album
 ```javascript
 humble.albums.getInfo('album_id', 'album_key').then(function (album_info) {
@@ -45,10 +46,24 @@ humble.albums.getInfo('album_id', 'album_key').then(function (album_info) {
 });
 ```
 ##images
-###get
+###[get](http://api.smugmug.com/services/api/?version=1.3.0&method=smugmug.images.get)
 Lists all of the images in an album
 ```javascript
 humble.images.get('album_id', 'album_key').then(function (image_list) {
+    //Do Stuff
+});
+```
+
+## Additional options
+Most SmugMug API calls support additional options.  You can call most of these methods with an options object to set additional information.
+_NOTE:  These options appear to be case sensitive so becareful_
+
+```javascript
+var options = {
+    Heavy: true
+};
+
+humble.images.get('album_id', 'album_key', options).then(function (image_list) {
     //Do Stuff
 });
 ```

@@ -90,15 +90,23 @@ module.exports = {
 		}
 	},
 	albums: {
-		get: function (name) {
+		get: function (name, options) {
 			'use strict';
-			var params, url,
+			var params, url, options_key,
 				deferred = Q.defer();
 
 			params = {
 				method: 'smugmug.albums.get',
 				NickName: name
 			};
+
+			if (options) {
+				for (options_key in options) {
+					if (options.hasOwnProperty(options_key)) {
+						params[options_key] = options[options_key];
+					}
+				}
+			}
 
 			url = utils.generate_url(params);
 
@@ -114,9 +122,9 @@ module.exports = {
 
 			return deferred.promise;
 		},
-		getInfo: function (id, key) {
+		getInfo: function (id, key, options) {
 			'use strict';
-			var params, url,
+			var params, url, options_key,
 				deferred = Q.defer();
 
 			params = {
@@ -124,6 +132,14 @@ module.exports = {
 				AlbumID: id,
 				AlbumKey: key
 			};
+
+			if (options) {
+				for (options_key in options) {
+					if (options.hasOwnProperty(options_key)) {
+						params[options_key] = options[options_key];
+					}
+				}
+			}
 
 			url = utils.generate_url(params);
 
@@ -141,9 +157,9 @@ module.exports = {
 		}
 	},
 	images: {
-		get: function (id, key) {
+		get: function (id, key, options) {
 			'use strict';
-			var params, url,
+			var params, url, options_key,
 				deferred = Q.defer();
 
 			params = {
@@ -151,6 +167,14 @@ module.exports = {
 				AlbumID: id,
 				AlbumKey: key
 			};
+
+			if (options) {
+				for (options_key in options) {
+					if (options.hasOwnProperty(options_key)) {
+						params[options_key] = options[options_key];
+					}
+				}
+			}
 
 			url = utils.generate_url(params);
 
