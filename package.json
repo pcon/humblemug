@@ -1,0 +1,30 @@
+{
+	"name": "humblemug",
+	"version": "0.1.0",
+	"description": "A library for interacting with the SmugMug API",
+	"main": "index.js",
+	"dependencies": {
+		"request": "2.26.x",
+		"q": "1.1.2"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/pcon/humblemug.git"
+	},
+	"keywords": [
+	"smugmug"
+	],
+	"author": "Patrick Connelly <patrick@deadlypenguin.com> (http://deadlypenguin.com)",
+	"licenses": [
+		{
+			"type": "GPLv2",
+			"url": "https://github.com/pcon/humblemug/blob/master/LICENSE"
+		}
+	],
+	"bugs": {
+		"url": "https://github.com/pcon/humblemug/issues"
+	}
+}
