@@ -1,6 +1,6 @@
 {
 	"name": "humblemug",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "A library for interacting with the SmugMug API",
 	"main": "index.js",
 	"dependencies": {
