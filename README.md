@@ -17,36 +17,36 @@ humble.login.anon().then(function () {
 ```
 
 # Documentation
-##config
+## config
 Config takes in an object of configuration information to store and use.
 ```javascript
 humble.config({api_key: '1234567890abc'});
 ```
-##login
-###anon
+## login
+### anon
 Most public information can be accessed with after loggining in anonymously
 ```javascript
 humble.login.anon().then(function () {
     //Do Stuff
 });
 ```
-##albums
-###[get](http://api.smugmug.com/services/api/?version=1.3.0&method=smugmug.albums.get)
+## albums
+### [get](http://api.smugmug.com/services/api/?version=1.3.0&method=smugmug.albums.get)
 Lists all of the albums for a given user
 ```javascript
 humble.albums.get('username').then(function (album_list) {
     //Do Stuff
 });
 ```
-###[getInfo](http://api.smugmug.com/services/api/?version=1.3.0&method=smugmug.albums.getInfo)
+### [getInfo](http://api.smugmug.com/services/api/?version=1.3.0&method=smugmug.albums.getInfo)
 Gets all the info for a given album
 ```javascript
 humble.albums.getInfo('album_id', 'album_key').then(function (album_info) {
     //Do Stuff
 });
 ```
-##images
-###[get](http://api.smugmug.com/services/api/?version=1.3.0&method=smugmug.images.get)
+## images
+### [get](http://api.smugmug.com/services/api/?version=1.3.0&method=smugmug.images.get)
 Lists all of the images in an album
 ```javascript
 humble.images.get('album_id', 'album_key').then(function (image_list) {
